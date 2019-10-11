@@ -1,0 +1,57 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.yunding.cp.mapper.PunchUserMapper">
+<insert id="insert" parameterType="cn.yunding.cp.entity.Punchs">
+    INSERT INTO cp_punch_user(site_name, site_id, user_id, user_nick, create_at, update_at)  VALUES
+    (#{siteName},#{siteId},#{userId},#{userNick},#{createAt},#{updateAt})
+
+</insert>
+    <select id="selectByuserId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT user_nick FROM cp_user WHERE user_id=#{userId}
+    </select>
+    <select id="selectBysiteId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT site_name FROM cp_punch WHERE site_id=#{siteId}
+    </select>
+    <select id="selectAmStartAtBySiteId" parameterType="java.lang.Integer" resultType="java.sql.Time">
+        SELECT am_start_at FROM cp_punch_time WHERE site_id=#{siteId}
+    </select>
+    <select id="selectAmStartAt2BySiteId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT am_start_at FROM cp_punch_time WHERE site_id=#{siteId}
+    </select>
+
+    <select id="selectAmEndAtBySiteId" parameterType="java.lang.Integer" resultType="java.sql.Time">
+        SELECT am_end_at FROM cp_punch_time WHERE site_id=#{siteId}
+    </select>
+
+    <select id="selectAmEndAt2BySiteId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT am_end_at FROM cp_punch_time WHERE site_id=#{siteId}
+    </select>
+    <insert id="amStartP" parameterType="cn.yunding.cp.entity.PunchUser">
+        INSERT INTO cp_punch_user_copy(site_name, site_id, user_id, user_nick,am_start_p, am_end_p, pm_start_p, pm_end_p, night_start_p, night_end_p, create_at, update_at)
+        VALUES
+        (#{siteName},#{siteId},#{userId},#{userNick},#{amStartP},#{amEndP},#{pmStartP},#{pmEndP},#{nightStartP},#{nightEndP},#{createAt},#{updateAt})
+    </insert>
+    <select id="selectPmStartAtBySiteId" parameterType="java.lang.Integer" resultType="java.sql.Time">
+        SELECT pm_start_at FROM cp_punch_time WHERE site_id=#{siteId}
+    </select>
+    <select id="selectpunchIdBySiteIdUserIdCreate" parameterType="cn.yunding.cp.dto.UserCreateAt" resultType="java.lang.Integer">
+        SELECT punch_id FROM cp_punch_user_copy WHERE site_id=#{siteId} AND user_id=#{userId} AND create_at=#{createAt}
+    </select>
+    <update id="amEndP" parameterType="cn.yunding.cp.dto.PunchTimes">
+        UPDATE cp_punch_user_copy SET am_end_p=#{times} WHERE punch_id=#{punchId}
+    </update>
+    <update id="pmStartP" parameterType="cn.yunding.cp.dto.PunchTimes">
+        UPDATE cp_punch_user_copy SET pm_start_p=#{times} WHERE punch_id=#{punchId}
+    </update>
+    <update id="pmEndP" parameterType="cn.yunding.cp.dto.PunchTimes">
+        UPDATE cp_punch_user_copy SET pm_end_p=#{times} WHERE punch_id=#{punchId}
+    </update>
+    <update id="nightStartP" parameterType="cn.yunding.cp.dto.PunchTimes">
+        UPDATE cp_punch_user_copy SET night_start_p=#{times} WHERE punch_id=#{punchId}
+    </update>
+    <update id="nightEndP" parameterType="cn.yunding.cp.dto.PunchTimes">
+        UPDATE cp_punch_user_copy SET night_end_p=#{times} WHERE punch_id=#{punchId}
+    </update>
+</mapper>

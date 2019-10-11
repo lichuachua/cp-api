@@ -1,0 +1,41 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.yunding.cp.mapper.UserIdentityMapper">
+    <insert id="insert">
+        INSERT INTO
+        cp_user_identity(user_id, username, password, create_at, update_at)
+        VALUES (#{userId}, #{username}, #{password}, #{createAt}, #{updateAt} )
+    </insert>
+
+
+    <select id="selectByUsername" parameterType="java.lang.String" resultType="cn.yunding.cp.entity.UserIdentity">
+        SELECT *
+        FROM
+        cp_user_identity
+        WHERE username = #{username}
+    </select>
+    <select id="selectByUserId" parameterType="java.lang.Long" resultType="cn.yunding.cp.entity.UserIdentity">
+        SELECT *
+        FROM cp_user_identity
+        WHERE user_id=#{userId}
+    </select>
+    <select id="selectByUseranmePassword" parameterType="java.lang.String" resultType="cn.yunding.cp.entity.UserIdentity">
+        SELECT *
+        FROM
+        cp_user_identity
+        WHERE username = #{username}
+    </select>
+    <update
+            id="password" parameterType="cn.yunding.cp.dto.UserLogin">
+
+        UPDATE cp_user_identity SET password=#{newPassword},update_at=#{updateAt} WHERE username=#{username}
+
+    </update>
+    <select id="forgetPassword1" parameterType="java.lang.Long" resultType="java.lang.String">\
+    SELECT user_id FROM cp_user_identity WHERE username=#{username}
+
+    </select>
+
+</mapper>

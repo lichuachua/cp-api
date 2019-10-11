@@ -1,0 +1,46 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.yunding.cp.mapper.UserEmailMapper">
+
+<select id="findPassword" parameterType="java.lang.String" resultType="cn.yunding.cp.entity.User">
+
+
+  SELECT * FROM cp_user WHERE email=#{email}
+</select>
+<insert
+        id="savecaptcha" parameterType="cn.yunding.cp.entity.UserEmail">
+  INSERT INTO
+  cp_user_email(email, captcha, create_at, update_at, dateline) VALUES (
+  #{email},#{captcha},#{createAt},#{updateAt},#{dateline}
+  )
+
+</insert>
+  <select id="selectByEmail" parameterType="java.lang.String" resultType="cn.yunding.cp.entity.UserEmail">
+
+    SELECT * FROM cp_user_email WHERE email=#{email}
+  </select>
+  <update id="updatecaptcha" parameterType="cn.yunding.cp.entity.UserEmail" >
+    UPDATE cp_user_email SET captcha=#{captcha},create_at=#{createAt},update_at=#{updateAt},dateline=#{dateline} WHERE email=#{email}
+  </update>
+  <select id="verifycaptchaByEmail" parameterType="java.lang.String" resultType="cn.yunding.cp.dto.UserFindPassword">
+    SELECT * FROM cp_user_email WHERE email=#{email};
+  </select>
+  <delete id="delete" parameterType="java.lang.String">
+
+    DELETE FROM cp_user_email WHERE email=#{email}
+  </delete>
+  <select id="selectDateline" parameterType="java.lang.String" resultType="java.lang.String">
+    SELECT dateline  FROM cp_user_email WHERE email=#{email}
+  </select>
+  <select id="selectUserIdByEmail" parameterType="java.lang.String" resultType="java.lang.Long">
+    SELECT user_id FROM cp_user WHERE email=#{email}
+
+  </select>
+  <select id="selectUsernameByUserId" parameterType="java.lang.Long" resultType="java.lang.String">
+    SELECT username FROM cp_user_identity WHERE user_id=#{userId}
+
+
+  </select>
+</mapper>

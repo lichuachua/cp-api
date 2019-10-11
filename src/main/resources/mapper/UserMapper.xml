@@ -1,0 +1,50 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.yunding.cp.mapper.UserMapper">
+    <insert
+            useGeneratedKeys="true"
+            keyColumn="user_id"
+            keyProperty="userId"
+            id="insert" parameterType="cn.yunding.cp.entity.User">
+        INSERT INTO
+        cp_user(
+        avatar, user_nick, signature, gender, status, create_at, update_at
+        ) VALUES (
+        #{avatar}, #{userNick}, #{signature}, #{gender}, #{status}, #{createAt}, #{updateAt}
+        )
+    </insert>
+    <select id="query" parameterType="java.lang.Integer" resultType="cn.yunding.cp.entity.User">
+
+
+        SELECT * FROM cp_user WHERE user_id=#{userId}
+
+    </select>
+<update id="update" parameterType="cn.yunding.cp.dto.UserUpdate">
+
+
+
+
+    UPDATE cp_user SET user_nick=#{userNick},signature=#{signature},gender=#{gender},update_at=#{updateAt},email=#{email} WHERE user_id=#{userId}
+
+
+</update>
+    <update id="avatar"
+            useGeneratedKeys="true"
+            keyProperty="userId"
+            keyColumn="user_id"
+            parameterType="cn.yunding.cp.dto.UserAvatar">
+        <selectKey keyProperty="userId" keyColumn="user_id" resultType="java.lang.String" order="BEFORE">
+
+            SELECT replace(uuid(),'-','') as id FROM dual
+
+        </selectKey>
+        UPDATE cp_user SET avatar=#{avatar} WHERE user_id=#{userId}
+    </update>
+
+
+
+
+
+</mapper>

@@ -1,0 +1,166 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.yunding.cp.mapper.ItemMapper">
+
+
+    <select id="selectUserNickByUserId" parameterType="java.lang.Integer" resultType="java.lang.String">
+
+        SELECT user_nick FROM cp_user WHERE user_id=#{userId}
+    </select>
+
+    <insert id="addItem" parameterType="cn.yunding.cp.entity.Item">
+        INSERT INTO cp_item(user_id,item_name, introduce,
+        item_password, leader, create_at, update_at) VALUES (
+        #{userId},#{itemName},#{introduce},#{itemPassword},#{leader},#{createAt},#{updateAt}
+        )
+    </insert>
+    <update id="updateItem" parameterType="cn.yunding.cp.entity.Item">
+        UPDATE cp_item SET item_name=#{itemName},introduce=#{introduce},item_password=#{itemPassword},update_at=#{updateAt} WHERE item_id=#{itemId}
+
+    </update>
+
+    <select id="selectAllItem" resultType="cn.yunding.cp.dto.ItemList">
+        SELECT * FROM cp_item
+
+    </select>
+    <!--<select id="detailItem" parameterType="java.lang.Integer" resultType="cn.yunding.cp.dto.ItemDetail">-->
+        <!--SELECT item_name, introduce,-->
+        <!--item_password, leader, cp_item.create_at, cp_item.update_at,leader,crew_name-->
+        <!--FROM cp_item,cp_item_crew WHERE cp_item.item_id=#{itemId} AND cp_item_crew.item_id=#{itemId}-->
+    <!--</select>-->
+
+    <select id="selectUserIdByitemId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT user_id FROM  cp_item WHERE item_id=#{itemId}
+    </select>
+    <select id="detailItem" resultType="cn.yunding.cp.dto.ItemDetail" parameterType="java.lang.Integer">
+        SELECT * FROM cp_item WHERE item_id=#{itemId}
+
+    </select>
+    <select id="detailItemNoPassword" resultType="cn.yunding.cp.dto.ItemDetail" parameterType="java.lang.Integer">
+        SELECT item_id,item_name, introduce,
+        leader, create_at, update_at FROM cp_item WHERE item_id=#{itemId}
+
+    </select>
+
+
+
+
+
+
+
+
+    <delete id="deleteCrewByItemId" parameterType="java.lang.Integer" >
+        DELETE FROM cp_item_crew WHERE item_id=#{itemId}
+
+    </delete>
+
+    <select id="detailCrew" resultType="cn.yunding.cp.dto.CrewDetail" parameterType="java.lang.Integer">
+        SELECT * FROM cp_item_crew WHERE item_id=#{itemId}
+
+    </select>
+
+    <delete id="deleteItem" parameterType="java.lang.Integer" >
+        DELETE FROM cp_item WHERE item_id=#{itemId}
+
+    </delete>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <select id="selectitemByPassword" parameterType="java.lang.Integer" resultType="cn.yunding.cp.entity.Item">
+        SELECT * FROM cp_item WHERE item_id=#{itemId}
+    </select>
+    <insert id="addCrew" parameterType="cn.yunding.cp.entity.ItemCrew">
+        INSERT INTO cp_item_crew(user_id, item_id, item_name, crew_name, create_at, update_at) VALUES(
+        #{userId},#{itemId},#{itemName},#{crewName},#{createAt},#{updateAt}
+        )
+    </insert>
+
+    <delete id="deleteCrew" parameterType="java.lang.Integer" >
+        DELETE FROM cp_item_crew WHERE crew_id=#{crewId}
+
+    </delete>
+<select id="selectMyItemId" parameterType="java.lang.Integer" resultType="cn.yunding.cp.entity.ItemCrew">
+    SELECT * FROM cp_item_crew WHERE user_id=#{userId}
+</select>
+    <select id="selectMyItem" parameterType="java.lang.Integer" resultType="cn.yunding.cp.dto.ItemList">
+        SELECT * FROM cp_item_crew WHERE user_id=#{userId}
+    </select>
+
+
+
+
+
+
+    <select id="selectItemIdByCrewId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+        SELECT item_id FROM cp_item_crew WHERE crew_id=#{crewId}
+    </select>
+
+    <insert id="addUpload" parameterType="cn.yunding.cp.entity.ItemUpload" >
+        INSERT INTO cp_item_upload(user_id, crew_id,
+        upload_content, create_at, update_at, item_id) VALUES (
+        #{userId},#{crewId},#{uploadContent},#{createAt},#{updateAt},#{itemId}
+        )
+    </insert>
+
+    <select id="selectItemnameByCrewId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT item_name FROM cp_item WHERE item_id=#{itemId}
+    </select>
+    <select id="selectCrewnameByCrewId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT crew_name FROM cp_item_crew WHERE crew_id=#{crewId}
+    </select>
+
+
+
+    <insert id="addUploads" parameterType="cn.yunding.cp.dto.ItemUploads" >
+        INSERT INTO cp_item_upload_copy(item_id, crew_id, item_name, crew_name, upload_content, create_at, update_at, dateline_at)
+        VALUES (
+        #{itemId},#{crewId},#{itemName},#{crewNick},#{uploadContent},#{createAt},#{updateAt},#{datelineAt}
+        )
+    </insert>
+    <select id="selectDatelineByUploadIp" parameterType="java.lang.Integer" resultType="java.util.Date">
+        SELECT dateline_at FROM cp_item_upload_copy WHERE upload_id=#{uploadId}
+    </select>
+    <update id="upUploads" parameterType="cn.yunding.cp.dto.ItemUploads">
+        UPDATE cp_item_upload_copy SET upload_content=#{uploadContent},update_at=#{updateAt}
+        WHERE upload_id=#{uploadId}
+    </update>
+
+
+
+
+
+
+
+    <resultMap type="cn.yunding.cp.dto.ItemUploads" id="ItemUploadsMap">
+        <result column="create_at" property="createAt"/>
+        <result column="update_at" property="updateAt"/>
+        <result column="item_name" property="itemName"/>
+        <result column="crew_name" property="crewNick"/>
+        <result column="upload_content" property="uploadContent"/>
+    </resultMap>
+    <select id="selectitemPasswordByItemId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT item_password FROM cp_item WHERE item_id=#{itemId}
+    </select>
+    <select id="getStuList" parameterType="java.lang.Integer" resultMap="ItemUploadsMap">
+
+          select * from cp_item_upload_copy WHERE item_id=#{itemId}
+
+    </select>
+    <select id="getStuListnull" parameterType="java.lang.Integer" resultMap="ItemUploadsMap">
+        SELECT * FROM cp_item_upload_copy
+    </select>
+
+</mapper>

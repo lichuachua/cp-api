@@ -1,0 +1,20 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.yunding.cp.mapper.UserLoginMapper">
+    <select id="selectByUsernamePassword" parameterType="java.lang.String" resultType="cn.yunding.cp.dto.UserLogin">
+        SELECT *
+        FROM
+        cp_user_identity
+        WHERE username=#{username}
+    </select>
+    <select id="selectByUseranmeUserId" parameterType="java.lang.String" resultType="java.lang.Integer">
+        SELECT *
+        FROM
+        cp_user_identity
+        WHERE
+        username=#{username}
+
+    </select>
+</mapper>

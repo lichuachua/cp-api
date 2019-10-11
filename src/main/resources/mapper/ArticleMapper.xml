@@ -1,0 +1,61 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.yunding.cp.mapper.ArticleMapper">
+
+
+    <insert id="insert"
+            parameterType="cn.yunding.cp.entity.Article">
+
+        insert into cp_article(
+         article_id,
+         user_id,
+         type_id,
+         title,
+         content,
+         create_at,
+         update_at,
+         status
+
+        ) values (
+        #{articleId},
+        #{userId},
+        #{typeId},
+        #{title},
+        #{content},
+        #{createAt},
+        #{updateAt},
+        #{status}
+        );
+    </insert>
+
+    <select id="article" parameterType="java.lang.Integer" resultType="cn.yunding.cp.entity.Article">
+        select *
+        from `cp_article`
+        where `article_id`=#{articleId}
+
+    </select>
+
+
+    <select id="selectAll" resultType="cn.yunding.cp.entity.Article">
+        select *
+        from `cp_article`
+    </select>
+
+
+
+
+    <select id="selectPraise" parameterType="cn.yunding.cp.entity.ArticlePraise" resultType="cn.yunding.cp.entity.ArticlePraise">
+        SELECT * FROM cp_article_praise WHERE user_id=#{userId} AND article_id=#{articleId}
+    </select>
+    <insert id="insertPraise" parameterType="cn.yunding.cp.entity.ArticlePraise" >
+        INSERT INTO cp_article_praise(user_id, article_id, praiseTime)
+        VALUES (#{userId},#{articleId},#{praiseTime})
+    </insert>
+
+
+
+
+
+</mapper>

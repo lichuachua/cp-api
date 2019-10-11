@@ -1,0 +1,23 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.yunding.cp.mapper.UserQuestionMapper">
+<insert id="addQuestion" parameterType="cn.yunding.cp.entity.UserQuestion">
+  INSERT INTO cp_user_question(username, question_a, question_b,
+  question_c, create_at, update_at) VALUES (
+  #{username},#{questionA},#{questionB},#{questionC},#{createAt},#{updateAt}
+  )
+
+</insert>
+  <update id="updateQuestion" parameterType="cn.yunding.cp.entity.UserQuestion">
+    UPDATE cp_user_question SET question_a=#{questionA},
+    question_b=#{questionB},question_c=#{questionC},update_at=#{updateAt}
+    WHERE username=#{username}
+  </update>
+  <select id="selectQuestion" parameterType="cn.yunding.cp.entity.UserQuestion" resultType="cn.yunding.cp.entity.UserQuestion">
+
+  SELECT * FROM cp_user_question WHERE username=#{username}
+  </select>
+
+</mapper>

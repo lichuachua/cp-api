@@ -1,0 +1,38 @@
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="cn.yunding.cp.mapper.PunchMapper">
+    <select id="selectPunchLogLatBySiteId"
+            parameterType="java.lang.Integer" resultType="cn.yunding.cp.dto.PunchSite"
+    >
+        SELECT lng,lat FROM cp_punch WHERE site_id=#{siteId}
+    </select>
+    <select id="selectSiteNameBySiteId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT site_name FROM cp_punch WHERE site_id=#{siteId}
+    </select>
+    <select id="selectUserNickByUserId" parameterType="java.lang.Integer" resultType="java.lang.String">
+        SELECT user_nick FROM cp_user WHERE user_id=#{userId}
+    </select>
+
+    <resultMap id="PunchMap" type="cn.yunding.cp.entity.PunchUser" >
+        <result column="site_name" property="siteName"/>
+        <result column="user_nick" property="userNick"/>
+        <result column="am_start_p" property="amStartP"/>
+        <result column="am_end_p" property="amEndP"/>
+        <result column="pm_start_p" property="pmStartP"/>
+        <result column="pm_end_p" property="pmStartP"/>
+        <result column="night_start_p" property="nightStartP"/>
+        <result column="night_end_p" property="nightEndP"/>
+        <result column="create_at" property="createAt"/>
+
+    </resultMap>
+
+    <select id="getStuListnull" resultMap="PunchMap">
+
+        SELECT * FROM cp_punch_user_copy
+
+    </select>
+
+
+</mapper>
