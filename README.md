@@ -15,7 +15,7 @@
 项目为后台API，针对公司进行的打卡，项目管理，文章为一体的APP，共一百余接口。
 
 #### 思维导图
-![图片名称](https://github.com/lichuachua/lccblog/tree/master/static/readme) 
+![整体思维导图](https://github.com/lichuachua/cp-api/blob/master/src/main/webapp/github_images/swdt.png) 
 
 
 #### Contribution
