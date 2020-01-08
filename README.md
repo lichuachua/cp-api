@@ -1,12 +1,16 @@
 # cp-api
 
-#### Description
-金刚葫芦娃-后台API
+### 项目名  
+云极APP（金刚葫芦娃-后台API）  
 
-#### Software Architecture
-Software architecture description
+### 参与者  
+李歘歘  
+段哥（大佬）  
+社会霆哥  
+小任同学  
 
-#### Installation
+
+#### 项目介绍
 
 1. xxxx
 2. xxxx
