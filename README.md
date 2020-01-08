@@ -9,28 +9,20 @@
 社会霆哥  
 小任同学  
 
+### 技术栈  
+1.Spring
+2.Spring MVC
+3.Mybatis
+4.Mysql
 
 ### 介绍  
 
 项目为后台API，针对公司进行的打卡，项目管理，文章为一体的APP，共一百余接口。
 
-#### 思维导图
+### 思维导图  
 ![整体思维导图](https://github.com/lichuachua/cp-api/blob/master/src/main/webapp/github_images/swdt.png) 
 
+### 项目运行实例  
+![Postman运行实例](https://github.com/lichuachua/cp-api/blob/master/src/main/webapp/github_images/swdt.png) 
 
-#### Contribution
-
-1. Fork the project
-2. Create Feat_xxx branch
-3. Commit your code
-4. Create Pull Request
-
-
-#### Gitee Feature
-
-1. You can use Readme\_XXX.md to support different languages, such as Readme\_en.md, Readme\_zh.md
-2. Gitee blog [blog.gitee.com](https://blog.gitee.com)
-3. Explore open source project [https://gitee.com/explore](https://gitee.com/explore)
-4. The most valuable open source project [GVP](https://gitee.com/gvp)
-5. The manual of Gitee [http://git.mydoc.io/](http://git.mydoc.io/)
-6. The most popular members  [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
+  
