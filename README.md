@@ -23,6 +23,6 @@
 ![整体思维导图](https://github.com/lichuachua/cp-api/blob/master/src/main/webapp/github_images/swdt.png) 
 
 ### 项目运行实例  
-![Postman运行实例](https://github.com/lichuachua/cp-api/blob/master/src/main/webapp/github_images/swdt.png) 
+![Postman运行实例](https://github.com/lichuachua/cp-api/blob/master/src/main/webapp/github_images/yxsl.jpg) 
 
   
