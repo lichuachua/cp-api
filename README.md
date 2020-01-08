@@ -10,17 +10,13 @@
 小任同学  
 
 
-#### 项目介绍
+### 介绍  
 
-1. xxxx
-2. xxxx
-3. xxxx
+项目为后台API，针对公司进行的打卡，项目管理，文章为一体的APP，共一百余接口。
 
-#### Instructions
+#### 思维导图
+![整体思维导图](https://github.com/lichuachua/cp-api/blob/master/src/main/webapp/github_images/swdt.png) 
 
-1. xxxx
-2. xxxx
-3. xxxx
 
 #### Contribution
 
